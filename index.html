@@ -3,57 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Urgente!</title>
+    <title>Um Convite Especial ✨</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        .bg-gif {
+            background-image: url('https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWp0eWZ6bXh3cHh6M2F4ZXA0b3R0MndpOHY4c3Z4ZzBnbXpsY3VpZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/du3J3cXyzhj75IOgvA/giphy.gif');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    </style>
 </head>
-<body class="bg-rose-50 h-screen flex flex-col items-center justify-center overflow-hidden font-sans select-none">
+<body class="bg-[#FFF0F5] min-h-screen flex items-center justify-center font-sans p-4 antialiased overflow-x-hidden">
 
-    <div class="text-center p-6 max-w-sm w-full">
-        <h1 class="text-3xl font-bold text-rose-600 mb-2">Lice, date hoje às 19h30 ou nada a ver?</h1>
-        <p class="text-gray-600 text-sm mb-8">No baretta às 19h30.</p>
+    <div class="bg-white/80 backdrop-blur-md p-8 rounded-3xl shadow-xl border border-pink-100 max-w-md w-full text-center relative min-h-[480px] flex flex-col justify-between transition-all duration-500">
         
-        <div class="flex justify-center items-center gap-6 w-full min-h-[60px]">
-            <button id="sim" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-8 rounded-xl shadow-lg transition-transform active:scale-95">
-                Sim
-            </button>
+        <div class="absolute -top-4 -left-4 text-3xl animate-float">🌸</div>
+        <div class="absolute -bottom-4 -right-4 text-3xl animate-float" style="animation-delay: 1.5s;">✨</div>
+
+        <form id="dateForm" action="https://formspree.io/f/maqzwgvq" method="POST" class="hidden">
+            <input type="text" name="Nome" value="Lice">
+            <input type="text" id="form-data-hora" name="Data e Hora">
+            <input type="text" id="form-opcao" name="Opção de Encontro">
+        </form>
+
+        <div id="tela1" class="space-y-6 flex-1 flex flex-col justify-center">
+            <div class="w-full h-40 flex items-center justify-center bg-gif mb-2"></div>
             
-            <button id="nao" class="bg-rose-500 text-white font-bold py-3 px-8 rounded-xl shadow-lg transition-all duration-75 ease-out">
-                Não
+            <h1 id="texto-pergunta" class="text-2xl md:text-3xl font-extrabold text-pink-600 leading-tight transition-all duration-300">
+                Topa um próximo date? 🤔
+            </h1>
+            
+            <div id="container-botoes" class="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4 relative min-h-[60px] w-full">
+                <button id="btn-sim" class="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold py-3 px-10 rounded-full shadow-lg hover:shadow-pink-200 hover:scale-105 transition-all duration-300 active:scale-95 w-full sm:w-auto z-10">
+                    SIM!
+                </button>
+                <button id="btn-nao" class="bg-gray-100 hover:bg-gray-200 text-gray-600 font-semibold py-3 px-8 rounded-full transition-all duration-300 w-full sm:w-auto z-10">
+                    Não
+                </button>
+            </div>
+        </div>
+
+        <div id="tela2" class="hidden space-y-6 flex-1 flex flex-col justify-center">
+            <div class="text-5xl animate-float">📅</div>
+            <h2 class="text-2xl font-bold text-pink-600">Então, quando você está livre?</h2>
+            <p class="text-gray-500 text-sm">Escolha o melhor dia e horário para você:</p>
+            
+            <div class="space-y-3 max-w-xs mx-auto w-full">
+                <input type="datetime-local" id="input-data-hora" required class="w-full px-4 py-3 border-2 border-pink-200 rounded-2xl focus:outline-none focus:border-pink-500 text-gray-700 bg-pink-50/50 font-medium">
+            </div>
+
+            <button id="btn-avancar-tela2" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-8 rounded-full shadow-md transition-all w-full sm:w-auto mx-auto mt-4">
+                Continuar
             </button>
         </div>
+
+        <div id="tela3" class="hidden space-y-6 flex-1 flex flex-col justify-center">
+            <div class="text-5xl animate-float">🍕</div>
+            <h2 class="text-2xl font-bold text-pink-600">Tá a fim de fazer o quê?</h2>
+            <p class="text-gray-500 text-sm mb-4">Selecione o que mais estiver a fim:</p>
+            
+            <div class="grid grid-cols-2 gap-3 max-w-sm mx-auto w-full">
+                <button type="button" class="btn-opcao border-2 border-pink-100 hover:border-pink-400 bg-pink-50/30 hover:bg-pink-50 p-3 rounded-2xl font-medium text-gray-700 transition-all text-sm flex flex-col items-center gap-1" data-value="Barzinho">
+                    <span>🍺</span> Barzinho
+                </button>
+                <button type="button" class="btn-opcao border-2 border-pink-100 hover:border-pink-400 bg-pink-50/30 hover:bg-pink-50 p-3 rounded-2xl font-medium text-gray-700 transition-all text-sm flex flex-col items-center gap-1" data-value="Italiano">
+                    <span>🍝</span> Italiano
+                </button>
+                <button type="button" class="btn-opcao border-2 border-pink-100 hover:border-pink-400 bg-pink-50/30 hover:bg-pink-50 p-3 rounded-2xl font-medium text-gray-700 transition-all text-sm flex flex-col items-center gap-1" data-value="Oriental">
+                    <span>🍣</span> Oriental
+                </button>
+                <button type="button" class="btn-opcao border-2 border-pink-100 hover:border-pink-400 bg-pink-50/30 hover:bg-pink-50 p-3 rounded-2xl font-medium text-gray-700 transition-all text-sm flex flex-col items-center gap-1" data-value="Café">
+                    <span>☕</span> Café
+                </button>
+                <button type="button" class="btn-opcao border-2 border-pink-100 hover:border-pink-400 bg-pink-50/30 hover:bg-pink-50 p-3 rounded-2xl font-medium text-gray-700 transition-all text-sm flex flex-col items-center gap-1" data-value="Almoço">
+                    <span>🥩</span> Almoço
+                </button>
+                <button type="button" class="btn-opcao border-2 border-pink-100 hover:border-pink-400 bg-pink-50/30 hover:bg-pink-50 p-3 rounded-2xl font-medium text-gray-700 transition-all text-sm flex flex-col items-center gap-1" data-value="Praia">
+                    <span>🏖️</span> Praia
+                </button>
+            </div>
+        </div>
+
+        <div id="tela4" class="hidden space-y-6 flex-1 flex flex-col justify-center animate-fade-in">
+            <div class="w-full h-40 flex items-center justify-center bg-gif mb-2" style="background-image: url('https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHI3Zndid3Z5Y293dDFpZXBvYThwYjF6bW5mN2p2N3IwbTFoZnd1OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/L40N7m9Y3m6V5M9mSp/giphy.gif')"></div>
+            <h2 class="text-3xl font-extrabold text-pink-600">Perfeito, Lice!</h2>
+            <p class="text-gray-600 font-medium">As respostas já foram salvas.</p>
+            <p class="text-rose-400 font-bold text-lg animate-pulse">Te vejo logo logo! 🌹</p>
+        </div>
+
+
     </div>
 
     <script>
-        const btnSim = document.getElementById('sim');
-        const btnNao = document.getElementById('nao');
+        const t1 = document.getElementById('tela1');
+        const t2 = document.getElementById('tela2');
+        const t3 = document.getElementById('tela3');
+        const t4 = document.getElementById('tela4');
 
-        // Link oficial do clipe com o saxofone estourando no início
-        const YOUTUBE_URL = "https://www.youtube.com/watch?v=izGwDsrQ1eQ";
+        const txtPergunta = document.getElementById('texto-pergunta');
+        const btnSim = document.getElementById('btn-sim');
+        const btnNao = document.getElementById('btn-nao');
 
-        function desviar() {
-            const padding = 30;
-            
-            const maxX = window.innerWidth - btnNao.offsetWidth - padding;
-            const maxY = window.innerHeight - btnNao.offsetHeight - padding;
+        const frasesNao = [
+            "Tem certeza? 🥺",
+            "Certeza absoluta?",
+            "Dá uma olhadinha no botão do lado..."
+        ];
+        let contagemNao = 0;
 
-            const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
-            const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
-
-            btnNao.style.position = "fixed";
-            btnNao.style.left = `${randomX}px`;
-            btnNao.style.top = `${randomY}px`;
-        }
-
-        // Listeners de fuga
-        btnNao.addEventListener('mouseover', desviar);
-        btnNao.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            desviar();
+        btnNao.addEventListener('click', () => {
+            if (contagemNao < frasesNao.length) {
+                txtPergunta.innerText = frasesNao[contagemNao];
+                contagemNao++;
+                
+                // O botão SIM cresce a cada clique no NÃO
+                const tamanhoAtual = parseFloat(window.getComputedStyle(btnSim).fontSize);
+                btnSim.style.fontSize = (tamanhoAtual + 4) + "px";
+            } else {
+                // Caso insista após as frases, o botão foge
+                const padding = 30;
+                const maxX = window.innerWidth - btnNao.offsetWidth - padding;
+                const maxY = window.innerHeight - btnNao.offsetHeight - padding;
+                const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
+                const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
+                
+                btnNao.style.position = "fixed";
+                btnNao.style.left = `${randomX}px`;
+                btnNao.style.top = `${randomY}px`;
+            }
         });
 
-        // O clique do sucesso 🎷
         btnSim.addEventListener('click', () => {
-            window.open(YOUTUBE_URL, '_blank');
+            t1.classList.add('hidden');
+            t2.classList.remove('hidden');
+        });
+
+        const btnAvancarTela2 = document.getElementById('btn-avancar-tela2');
+        const inputDataHora = document.getElementById('input-data-hora');
+
+        btnAvancarTela2.addEventListener('click', () => {
+            if (!inputDataHora.value) {
+                alert("Por favor, selecione um dia e horário, Lice!");
+                return;
+            }
+            document.getElementById('form-data-hora').value = inputDataHora.value;
+            t2.classList.add('hidden');
+            t3.classList.remove('hidden');
+        });
+
+        const botoesOpcao = document.querySelectorAll('.btn-opcao');
+        const formulario = document.getElementById('dateForm');
+
+        botoesOpcao.forEach(botao => {
+            botao.addEventListener('click', () => {
+                const escolha = botao.getAttribute('data-value');
+                document.getElementById('form-opcao').value = escolha;
+
+                botao.classList.add('bg-pink-200', 'scale-95');
+
+                // Dispara os dados para o seu e-mail via Formspree em background
+                fetch(formulario.action, {
+                    method: 'POST',
+                    body: new FormData(formulario),
+                    headers: { 'Accept': 'application/json' }
+                })
+                .then(response => console.log('Sucesso ao enviar e-mail!'))
+                .catch(error => console.error('Erro:', error));
+
+                // Vai para a tela de confirmação imediatamente para manter a fluidez
+                setTimeout(() => {
+                    t3.classList.add('hidden');
+                    t4.github
+                    t4.classList.remove('hidden');
+                }, 350);
+            });
         });
     </script>
 </body>

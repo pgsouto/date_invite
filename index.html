@@ -27,7 +27,7 @@
         <div class="absolute -bottom-4 -right-4 text-3xl animate-float" style="animation-delay: 1.5s;">✨</div>
 
         <form id="dateForm" action="https://formspree.io/f/maqzwgvq" method="POST" class="hidden">
-            <input type="text" name="Nome" value="Lice">
+            <input type="text" name="Nome" value="Clarita">
             <input type="text" id="form-data-hora" name="Data e Hora">
             <input type="text" id="form-opcao" name="Opção de Encontro">
         </form>
@@ -36,7 +36,7 @@
             <div class="w-full h-40 flex items-center justify-center bg-gif mb-2"></div>
             
             <h1 id="texto-pergunta" class="text-2xl md:text-3xl font-extrabold text-pink-600 leading-tight transition-all duration-300">
-                Topa um próximo date? 🤔
+                Topa o nosso primeiro date? 🤔
             </h1>
             
             <div id="container-botoes" class="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4 relative min-h-[60px] w-full">
@@ -92,11 +92,10 @@
 
         <div id="tela4" class="hidden space-y-6 flex-1 flex flex-col justify-center animate-fade-in">
             <div class="w-full h-40 flex items-center justify-center bg-gif mb-2" style="background-image: url('assets/200.gif')"></div>
-            <h2 class="text-3xl font-extrabold text-pink-600">Perfeito, Lice!</h2>
+            <h2 class="text-3xl font-extrabold text-pink-600">Perfeito, Clarita!</h2>
             <p class="text-gray-600 font-medium">O puxador de saco já foi informado.</p>
             <p class="text-rose-400 font-bold text-lg animate-pulse">Te vejo logo logo! 🌹</p>
         </div>
-
 
     </div>
 
@@ -149,7 +148,7 @@
 
         btnAvancarTela2.addEventListener('click', () => {
             if (!inputDataHora.value) {
-                alert("Por favor, selecione um dia e horário, Lice!");
+                alert("Por favor, selecione um dia e horário, Clarita!");
                 return;
             }
             document.getElementById('form-data-hora').value = inputDataHora.value;
@@ -179,7 +178,6 @@
                 // Vai para a tela de confirmação imediatamente para manter a fluidez
                 setTimeout(() => {
                     t3.classList.add('hidden');
-                    t4.github
                     t4.classList.remove('hidden');
                 }, 350);
             });
